@@ -2079,3 +2079,580 @@ textarea.form-control {
   width: 16px;
   height: 16px;
 }
+
+/* ==========================================================================
+   18. COMPREHENSIVE RESPONSIVE OVERRIDES
+   Mobile-first: 480px → 768px → 992px → 1200px
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   18a. Global helpers for all screen sizes
+   -------------------------------------------------------------------------- */
+.overflow-x-hidden { overflow-x: hidden; }
+
+img, picture, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure tables never break layout */
+.table-responsive {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* --------------------------------------------------------------------------
+   18b. ≤ 1024px  — tablet adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .section-padding-sm {
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .hero {
+    padding: 4rem 0 5rem;
+  }
+
+  .leadership-body {
+    padding: 2.25rem 2rem;
+  }
+
+  .cta-banner {
+    padding: 2.75rem 2rem;
+  }
+
+  .modal-body {
+    padding: 1.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18c. ≤ 768px  — tablet / large phone
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Container breathing room */
+  .container,
+  .container-narrow {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .section-padding-sm {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.25rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 3rem 0 3.75rem;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: 0.975rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding-top: 1.75rem;
+  }
+
+  .hero-stat-number {
+    font-size: 1.75rem;
+  }
+
+  /* Page hero (sub-pages) */
+  .page-hero {
+    padding: 2.5rem 0;
+  }
+
+  .page-hero-title {
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .page-hero-lead {
+    font-size: 0.95rem;
+  }
+
+  /* Nav brand — shrink text on small tablets */
+  .brand-name {
+    font-size: 0.88rem;
+  }
+
+  .brand-sub {
+    font-size: 0.52rem;
+  }
+
+  /* Section title */
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Grids — stack to single column */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Services showcase grid */
+  .services-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Leadership card — stack image above text */
+  .leadership-card {
+    grid-template-columns: 1fr;
+  }
+
+  .leadership-img-wrap {
+    min-height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .leadership-body {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .leadership-name {
+    font-size: 1.45rem;
+  }
+
+  .leadership-bio {
+    font-size: 0.925rem;
+  }
+
+  /* Workflow grid */
+  .workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Feature cards */
+  .feature-card {
+    padding: 1.75rem 1.5rem;
+  }
+
+  /* Division cards */
+  .division-header {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .division-body {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .division-title {
+    font-size: 1.35rem;
+  }
+
+  /* Data tables — ensure horizontal scroll */
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  /* Forms */
+  .form-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    padding: 0.75rem;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    max-height: 92vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .modal-header {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+  }
+
+  .modal-body {
+    padding: 1.25rem;
+  }
+
+  /* Footer */
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-compliance {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* CTA banner */
+  .cta-banner h2 {
+    font-size: 1.45rem;
+  }
+
+  /* Buttons — make stretch on mobile */
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.4rem;
+  }
+
+  /* Service callout box */
+  .service-callout-box {
+    padding: 1rem 1.1rem;
+  }
+
+  /* Service showcase body */
+  .service-showcase-body {
+    padding: 1.35rem;
+  }
+
+  /* Services sub-nav already has its own rule above; reinforce */
+  .services-subnav-bar {
+    overflow-x: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18d. ≤ 480px  — small phones
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+
+  html {
+    font-size: 15px;
+  }
+
+  /* Container */
+  .container,
+  .container-narrow {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 2.25rem 0 3rem;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .hero-stat-label {
+    font-size: 0.78rem;
+  }
+
+  /* Nav brand — hide sub-tagline on very small screens */
+  .brand-sub {
+    display: none;
+  }
+
+  .brand-name {
+    font-size: 0.82rem;
+  }
+
+  .brand-logo-img {
+    height: 34px;
+  }
+
+  /* Page hero */
+  .page-hero {
+    padding: 1.75rem 0;
+  }
+
+  .page-hero-title {
+    font-size: 1.4rem;
+  }
+
+  /* Section */
+  .section-padding {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* Grids - always single column */
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .services-showcase-grid,
+  .workflow-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Footer two-column → single */
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Data table cells more compact */
+  .data-table th,
+  .data-table td {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  /* Feature card */
+  .feature-card {
+    padding: 1.35rem 1.1rem;
+  }
+
+  /* Leadership */
+  .leadership-body {
+    padding: 1.35rem 1rem;
+  }
+
+  .leadership-name {
+    font-size: 1.25rem;
+  }
+
+  /* CTA banner */
+  .cta-banner {
+    padding: 1.75rem 1rem 2rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .cta-banner h2 {
+    font-size: 1.25rem;
+  }
+
+  .cta-banner p {
+    font-size: 0.9rem;
+  }
+
+  /* Buttons full width on tiny screens */
+  .hero-actions .btn,
+  .cta-banner .cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Modal — full height sheet */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    width: 100%;
+  }
+
+  .modal-header {
+    padding: 1rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1rem;
+  }
+
+  /* Form card */
+  .form-card {
+    padding: 1.1rem 0.85rem;
+  }
+
+  /* Checkbox grid — 1 column */
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  /* Footer bottom */
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+
+  /* Compliance badges wrap tightly */
+  .compliance-badges {
+    gap: 0.5rem;
+  }
+
+  /* Services subnav pill compact */
+  .services-subnav-item {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.65rem;
+  }
+
+  /* Tagline badges */
+  .tagline-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  /* Gallery caption */
+  .gallery-caption {
+    padding: 1rem;
+  }
+
+  .gallery-title {
+    font-size: 0.95rem;
+  }
+
+  /* Workflow card */
+  .workflow-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* Breadcrumbs */
+  .breadcrumbs {
+    font-size: 0.76rem;
+    flex-wrap: wrap;
+  }
+
+  /* Division header/body compact */
+  .division-header {
+    padding: 1.1rem 1rem;
+  }
+
+  .division-title {
+    font-size: 1.15rem;
+  }
+
+  .division-body {
+    padding: 1.1rem 1rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18e. ≤ 360px  — smallest phones (Galaxy Fold, etc.)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  html {
+    font-size: 14px;
+  }
+
+  .hero-title {
+    font-size: 1.45rem;
+  }
+
+  .hero-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+  }
+
+  .brand-logo-img {
+    height: 30px;
+  }
+
+  .modal-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18f. Filter pills & directory search — mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  /* Filter pill row: allow wrapping, reduce gap */
+  [style*="flex-wrap: wrap"] {
+    gap: 0.4rem !important;
+  }
+
+  .filter-pill.btn-sm {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  /* Search input + select row stacks */
+  .grid-2.directory-search-row,
+  div[style*="display: flex"][style*="gap"] {
+    flex-direction: column;
+  }
+}
+
+/* Prevent any fixed-width element from causing horizontal overflow */
+* {
+  max-width: 100%;
+}
+
+/* Exceptions: elements that should not be constrained */
+.site-header,
+.mobile-drawer,
+.modal-overlay,
+.floating-whatsapp,
+.services-subnav-bar {
+  max-width: none;
+}
+
+
