@@ -484,41 +484,51 @@ p:last-child {
     padding: 0.35rem 0;
   }
 
-  /* Outer wrapper: vertical stack of exactly 2 rows */
+  /* Outer wrapper: vertical stack of exactly 2 rows, aligned from the left */
   .top-bar-inner {
     display: flex;
     flex-direction: column !important;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
     gap: 0.25rem;
-    text-align: center;
+    text-align: left !important;
     width: 100%;
   }
 
-  /* ROW 1: RC badge + location (strictly 1 line) */
+  /* ROW 1: RC badge + location (strictly 1 line, aligned from the left) */
   .top-bar-left {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap !important;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start !important;
     gap: 0.45rem 0.65rem;
     width: 100%;
     white-space: nowrap !important;
-    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .top-bar-left::-webkit-scrollbar {
+    display: none;
   }
 
-  /* ROW 2: phone + WhatsApp + email (strictly 1 line) */
+  /* ROW 2: phone + WhatsApp + email (strictly 1 line, aligned from the left) */
   .top-bar-right {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap !important;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start !important;
     gap: 0.45rem 0.75rem;
     width: 100%;
     white-space: nowrap !important;
-    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .top-bar-right::-webkit-scrollbar {
+    display: none;
   }
 
   .top-bar-rc {
@@ -553,6 +563,7 @@ p:last-child {
 
   .top-bar-inner {
     gap: 0.2rem;
+    align-items: flex-start !important;
   }
 
   .top-bar-rc {
@@ -567,10 +578,12 @@ p:last-child {
 
   .top-bar-left {
     gap: 0.35rem 0.5rem;
+    justify-content: flex-start !important;
   }
 
   .top-bar-right {
     gap: 0.35rem 0.6rem;
+    justify-content: flex-start !important;
   }
 }
 
