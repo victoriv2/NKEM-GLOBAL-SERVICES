@@ -4,6 +4,20 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Dynamic Header Height Tracking (Keeps Top-Bar & Navigation Sticky & Synced)
+  function updateHeaderHeight() {
+    const headerWrapper = document.querySelector('.site-header-wrapper') || document.querySelector('.site-header');
+    if (headerWrapper) {
+      const h = headerWrapper.getBoundingClientRect().height;
+      if (h > 0) {
+        document.documentElement.style.setProperty('--header-total-height', `${Math.round(h)}px`);
+      }
+    }
+  }
+  window.addEventListener('resize', updateHeaderHeight, { passive: true });
+  window.addEventListener('orientationchange', updateHeaderHeight, { passive: true });
+  updateHeaderHeight();
+
   // 1. Mobile Menu Drawer Toggle
   const mobileToggle = document.getElementById('mobileToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
@@ -13,16 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileDrawer.classList.remove('open');
       mobileToggle?.classList.remove('active');
       document.body.classList.remove('mobile-nav-open');
-      document.body.style.overflow = '';
     }
   }
 
   function openMobileDrawer() {
     if (mobileDrawer) {
+      updateHeaderHeight();
       mobileDrawer.classList.add('open');
       mobileToggle?.classList.add('active');
       document.body.classList.add('mobile-nav-open');
-      document.body.style.overflow = 'hidden';
     }
   }
 
@@ -53,14 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. Sticky Header Elevation on Scroll
-  const siteHeader = document.querySelector('.site-header');
+  const siteHeaderWrapper = document.querySelector('.site-header-wrapper') || document.querySelector('.site-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
-      siteHeader?.classList.add('scrolled');
+      siteHeaderWrapper?.classList.add('scrolled');
     } else {
-      siteHeader?.classList.remove('scrolled');
+      siteHeaderWrapper?.classList.remove('scrolled');
     }
-  });
+  }, { passive: true });
 
   // 3. Modal Functionality (RFP / Workforce Mobilisation Request)
   const rfpModal = document.getElementById('rfpModal');
