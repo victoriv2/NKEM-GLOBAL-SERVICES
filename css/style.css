@@ -87,7 +87,8 @@ html {
   scrollbar-color: var(--color-slate-400) var(--color-slate-100);
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
+  scroll-padding-top: var(--header-total-height, 124px);
 }
 
 /* Custom Scrollbar for Browser Windows */
@@ -119,9 +120,10 @@ body {
   background-color: var(--color-slate-50);
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   -webkit-font-smoothing: antialiased;
+  padding-top: var(--header-total-height, 124px);
 }
 
 img, picture, video, canvas, iframe {
@@ -630,13 +632,14 @@ p:last-child {
    6. Main Navigation Header & Sticky Wrapper
    -------------------------------------------------------------------------- */
 .site-header-wrapper {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   max-width: 100%;
   z-index: 1000;
   background-color: var(--color-primary-darkest);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .site-header {
@@ -645,7 +648,6 @@ p:last-child {
   position: relative;
   width: 100%;
   max-width: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
@@ -2559,6 +2561,10 @@ img, picture, video, canvas, svg {
    18d. ≤ 480px  — small phones
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
+
+  :root {
+    --header-total-height: 114px;
+  }
 
   html {
     font-size: 15px;

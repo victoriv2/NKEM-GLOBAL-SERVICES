@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   window.addEventListener('resize', updateHeaderHeight, { passive: true });
   window.addEventListener('orientationchange', updateHeaderHeight, { passive: true });
+  window.addEventListener('load', updateHeaderHeight, { passive: true });
   updateHeaderHeight();
 
   // 1. Mobile Menu Drawer Toggle
