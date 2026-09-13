@@ -84,6 +84,9 @@ html {
   -webkit-text-size-adjust: 100%;
   scrollbar-width: thin;
   scrollbar-color: var(--color-slate-400) var(--color-slate-100);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Custom Scrollbar for Browser Windows */
@@ -113,14 +116,34 @@ body {
   line-height: 1.65;
   color: var(--color-slate-700);
   background-color: var(--color-slate-50);
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  position: relative;
   -webkit-font-smoothing: antialiased;
 }
 
-img, picture, video, canvas, svg {
+img, picture, video, canvas, iframe {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+svg {
+  max-width: 100%;
+}
+
+.svg-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 a {
@@ -131,6 +154,11 @@ a {
 
 ul, ol {
   list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, span, li, td, th {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -420,6 +448,9 @@ p:last-child {
   font-size: 0.78rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.45rem 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .top-bar-inner {
@@ -790,7 +821,7 @@ body.mobile-nav-open .site-header {
   height: calc(100vh - var(--header-height));
   height: calc(100dvh - var(--header-height));
   background-color: var(--color-primary-darkest);
-  padding: 1rem 1.5rem 4.5rem;
+  padding: 1.25rem 1.25rem 5.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -806,6 +837,10 @@ body.mobile-nav-open .site-header {
 
 .mobile-drawer.open {
   transform: translateX(0);
+}
+
+.mobile-drawer .nav-link:first-of-type {
+  margin-top: 0.25rem;
 }
 
 .mobile-drawer .nav-link {
@@ -1400,7 +1435,9 @@ body.mobile-nav-open .site-header {
    -------------------------------------------------------------------------- */
 .table-responsive {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-slate-200);
@@ -1410,6 +1447,7 @@ body.mobile-nav-open .site-header {
 
 .data-table {
   width: 100%;
+  min-width: 540px;
   border-collapse: collapse;
   text-align: left;
   font-size: 0.925rem;
@@ -1843,11 +1881,17 @@ textarea.form-control {
 
 .checkbox-label {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.6rem;
   font-size: 0.875rem;
   color: var(--color-slate-700);
   cursor: pointer;
+  line-height: 1.45;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -2250,6 +2294,20 @@ img, picture, video, canvas, svg {
   .container-narrow {
     padding-left: 1rem;
     padding-right: 1rem;
+    max-width: 100%;
+  }
+
+  /* Tone down heavy inline paddings and gaps on mobile cards */
+  [style*="padding: 3rem 2.5rem"],
+  [style*="padding: 2.5rem"],
+  [style*="padding: 2rem"] {
+    padding: 1.5rem 1.15rem !important;
+  }
+
+  [style*="gap: 3.5rem"],
+  [style*="gap: 3rem"],
+  [style*="gap: 2.5rem"] {
+    gap: 1.5rem !important;
   }
 
   /* Section spacing */
@@ -2461,10 +2519,18 @@ img, picture, video, canvas, svg {
     font-size: 1.45rem;
   }
 
-  /* Buttons — make stretch on mobile */
+  /* Buttons — scale and wrap gracefully on mobile */
   .btn {
     font-size: 0.9rem;
-    padding: 0.8rem 1.4rem;
+    padding: 0.8rem 1.25rem;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .btn-lg {
+    font-size: 0.95rem;
+    padding: 0.85rem 1.4rem;
   }
 
   /* Service callout box */
@@ -2479,7 +2545,14 @@ img, picture, video, canvas, svg {
 
   /* Services sub-nav already has its own rule above; reinforce */
   .services-subnav-bar {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .services-subnav-bar::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -2743,25 +2816,11 @@ img, picture, video, canvas, svg {
     padding: 0.35rem 0.7rem;
   }
 
-  /* Search input + select row stacks */
-  .grid-2.directory-search-row,
-  div[style*="display: flex"][style*="gap"] {
-    flex-direction: column;
+  /* Directory search input row stacks on small screens */
+  .grid-2.directory-search-row {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Prevent any fixed-width element from causing horizontal overflow */
-* {
-  max-width: 100%;
-}
-
-/* Exceptions: elements that should not be constrained */
-.site-header,
-.mobile-drawer,
-.modal-overlay,
-.floating-whatsapp,
-.services-subnav-bar {
-  max-width: none;
-}
 
 
