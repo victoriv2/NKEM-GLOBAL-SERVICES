@@ -1295,7 +1295,7 @@ body.mobile-nav-open {
 
 .service-showcase-card:hover {
   border-color: var(--color-accent-gold);
-  transform: translateY(-4px);
+  transform: none;
   box-shadow: var(--shadow-lg);
 }
 
@@ -1314,7 +1314,7 @@ body.mobile-nav-open {
 }
 
 .service-showcase-card:hover .service-showcase-img {
-  transform: scale(1.03);
+  transform: none;
 }
 
 .service-showcase-badge {
@@ -1985,7 +1985,7 @@ textarea.form-control {
   background: var(--color-accent-gold);
   color: var(--color-primary-darkest);
   border-color: var(--color-accent-gold);
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .footer-social-btn.linkedin-btn {
