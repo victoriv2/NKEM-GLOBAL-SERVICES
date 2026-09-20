@@ -154,17 +154,82 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 5. RFP Form Submission Handler
+  // 5. RFP Form Submission Handler & Executive Lead Persistence
   const rfpForms = document.querySelectorAll('.rfp-submit-form');
   rfpForms.forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const contractorName = form.querySelector('[name="contractor"]')?.value || 'Contractor';
-      const projectLocation = form.querySelector('[name="location"]')?.value || 'Nigeria Site';
-      const phone = form.querySelector('[name="phone"]')?.value || '';
       
-      alert(`Thank you, ${contractorName}! Your mobilisation inquiry for ${projectLocation} has been registered.\n\nOur Operations Executive (Raphael Nkemjika Julius) will review your project scope and respond within 2 to 4 business hours.\n\nFor immediate deployment, feel free to reach our desk directly at +234 815 560 8447.`);
+      const contractor = form.querySelector('[name="contractor"]')?.value?.trim() || 'Unspecified Contractor';
+      const name = form.querySelector('[name="name"]')?.value?.trim() || 'Direct Contact';
+      const phone = form.querySelector('[name="phone"]')?.value?.trim() || '';
+      const email = form.querySelector('[name="email"]')?.value?.trim() || '';
+      const location = form.querySelector('[name="location"]')?.value?.trim() || 'Nigeria Site';
+      const commercialModel = form.querySelector('[name="commercial_model"]')?.value || 'Standard Work Package';
+      const crewSize = form.querySelector('[name="crew_size"]')?.value || '5-15 Personnel';
+      const targetDate = form.querySelector('[name="target_date"]')?.value || '';
+      const scope = form.querySelector('[name="scope"]')?.value?.trim() || 'No additional scope details provided.';
       
+      // Selected service lines
+      const selectedServices = [];
+      form.querySelectorAll('input[name="services"]:checked').forEach(cb => {
+        selectedServices.push(cb.value);
+      });
+      
+      // Friendly service descriptions map
+      const serviceNameMap = {
+        'IndustrialServices': 'Industrial Services (Hydro-jetting / Coatings)',
+        'EngineeringServices': 'Engineering Services (Piping / Structural / Valves)',
+        'WeldersFitters': '6G Pipe Welders & Fitters (ASME IX)',
+        'ScaffoldRiggers': 'Certified Scaffolding & Rigging Crews',
+        'SiteSafety': 'Certified Field HSE & Fire Watch',
+        'ShutdownCleaning': 'Turnaround & Plant Cleaning',
+        'DrainageSumps': 'Storm Drainage & Sump Desilting',
+        'GeneralLogistics': 'Procurement, Tool Leasing & Site Camps'
+      };
+      
+      const readableServices = selectedServices.length > 0 
+        ? selectedServices.map(s => serviceNameMap[s] || s)
+        : ['Technical Workforce & Site Support'];
+
+      // Generate Unique Request ID: NGS-REQ-XXXX
+      const reqId = 'NGS-REQ-' + Math.floor(1000 + Math.random() * 9000);
+      
+      const newSubmission = {
+        id: reqId,
+        date: new Date().toISOString(),
+        contractor: contractor,
+        name: name,
+        phone: phone,
+        email: email,
+        location: location,
+        commercialModel: commercialModel,
+        services: readableServices,
+        rawServices: selectedServices,
+        crewSize: crewSize,
+        targetDate: targetDate,
+        scope: scope,
+        status: 'New', // Options: New, In Review, Mobilised, Archived
+        notes: ''
+      };
+
+      // Persist to localStorage
+      try {
+        let submissions = [];
+        const stored = localStorage.getItem('ngs_submissions');
+        if (stored) {
+          submissions = JSON.parse(stored);
+        }
+        if (!Array.isArray(submissions)) submissions = [];
+        submissions.unshift(newSubmission);
+        localStorage.setItem('ngs_submissions', JSON.stringify(submissions));
+      } catch (err) {
+        console.error('Failed to store submission in localStorage:', err);
+      }
+
+      // Confirmation Alert
+      alert(`Thank you, ${contractor}!\n\nYour Workforce Mobilisation Inquiry (${reqId}) has been successfully registered.\n\nManaging Director Raphael Nkemjika Julius and our Operations Desk will review your project scope and provide a formal response within 2 to 4 business hours.\n\nImmediate Operations Hotline: +234 815 560 8447 / WhatsApp: +234 704 208 7633`);
+
       form.reset();
       if (rfpModal && rfpModal.classList.contains('active')) {
         rfpModal.classList.remove('active');
