@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (rfpModal) {
         rfpModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        const modalBody = rfpModal.querySelector('.modal-body');
+        if (modalBody) modalBody.scrollTop = 0;
       }
     });
   });
