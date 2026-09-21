@@ -2675,9 +2675,11 @@ img, picture, video, canvas, svg {
     font-size: 0.78rem;
   }
 
-  /* Nav brand — hide sub-tagline on very small screens */
+  /* Nav brand — keep sub-tagline visible on small screens */
   .brand-sub {
-    display: none;
+    display: block;
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
   }
 
   .brand-name {
