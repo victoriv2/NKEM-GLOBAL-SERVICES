@@ -197,38 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Generate Unique Request ID: NGS-REQ-XXXX
       const reqId = 'NGS-REQ-' + Math.floor(1000 + Math.random() * 9000);
       
-      const newSubmission = {
-        id: reqId,
-        date: new Date().toISOString(),
-        contractor: contractor,
-        name: name,
-        phone: phone,
-        email: email,
-        location: location,
-        commercialModel: commercialModel,
-        services: readableServices,
-        rawServices: selectedServices,
-        crewSize: crewSize,
-        targetDate: targetDate,
-        scope: scope,
-        status: 'New', // Options: New, In Review, Mobilised, Archived
-        notes: ''
-      };
-
-      // Persist to localStorage backup
-      try {
-        let submissions = [];
-        const stored = localStorage.getItem('ngs_submissions');
-        if (stored) {
-          submissions = JSON.parse(stored);
-        }
-        if (!Array.isArray(submissions)) submissions = [];
-        submissions.unshift(newSubmission);
-        localStorage.setItem('ngs_submissions', JSON.stringify(submissions));
-      } catch (err) {
-        console.error('Failed to store submission locally:', err);
-      }
-
       // Confirmation Alert
       alert(`Thank you, ${contractor}!\n\nYour Workforce Mobilisation Inquiry (${reqId}) has been successfully registered.\n\nManaging Director Raphael Nkemjika Julius and our Operations Desk will review your project scope and provide a formal response within 2 to 4 business hours.\n\nImmediate Operations Hotline: +234 815 560 8447 / WhatsApp: +234 704 208 7633`);
 
