@@ -229,36 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Failed to store submission locally:', err);
       }
 
-      // Sync to JSONBin.io Cloud Bin
-      const JSONBIN_ID = '6ab02c2bffd5d160531d085b';
-      const JSONBIN_KEY = '$2a$10$nnSfeJQZY9FjkKghjfzlPuWFrIe/JV46TLSQbnho77T3kkmx/mMvK';
-
-      fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`, {
-        method: 'GET',
-        headers: {
-          'X-Master-Key': JSONBIN_KEY
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        let currentSubs = (data && data.record && Array.isArray(data.record.submissions)) ? data.record.submissions : [];
-        currentSubs.unshift(newSubmission);
-        return fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Master-Key': JSONBIN_KEY
-          },
-          body: JSON.stringify({ submissions: currentSubs })
-        });
-      })
-      .then(() => {
-        console.log('Submission successfully synchronized with operations cloud.');
-      })
-      .catch(cloudErr => {
-        console.warn('Cloud synchronization will retry on next check:', cloudErr);
-      });
-
       // Confirmation Alert
       alert(`Thank you, ${contractor}!\n\nYour Workforce Mobilisation Inquiry (${reqId}) has been successfully registered.\n\nManaging Director Raphael Nkemjika Julius and our Operations Desk will review your project scope and provide a formal response within 2 to 4 business hours.\n\nImmediate Operations Hotline: +234 815 560 8447 / WhatsApp: +234 704 208 7633`);
 
