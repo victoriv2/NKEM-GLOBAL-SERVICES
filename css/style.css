@@ -2930,5 +2930,23 @@ img, picture, video, canvas, svg {
   }
 }
 
+/* --------------------------------------------------------------------------
+   19. Form Transmission Loading States
+   -------------------------------------------------------------------------- */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-submitting {
+  opacity: 0.85;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
 
 
